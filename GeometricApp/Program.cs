@@ -11,25 +11,22 @@ namespace GeometricApp
 
     /// <summary>
     /// Program to determine the vertices for a given triangle as well as lookup a triangle based on a set of vertices
+    /// We use a bounding box as a model to determine the coordinates of a triangle
     /// </summary>
     public static class Program
     {
         public static void Main(string[] args)
         {
-            var rowValues = "ABCDEF";
-            var maxColValue = 12;
 
-            var map = new GeometricMap(rowValues, maxColValue);
-            map.Generate();
+            var calc = new GeometricCalculator(length: 10, numColumns: 12);
 
-            var calc = new GeometricCalculator(map, 10);
-
-            var keys = map.GenerateKeys();
+            var keys = calc.GenerateKeys();
 
             foreach (var key in keys)
             {
                 var vertices = calc.CalculateVerticesFromKey(key);
                 PrintResult(key, vertices);
+
                 var keyFromVertices = calc.CalculateKeyFromVertices(vertices);
                 Console.Write($" Reverse={keyFromVertices}");
                 Console.WriteLine();
@@ -44,7 +41,6 @@ namespace GeometricApp
         {
             var result = String.Join(" ", (from v in vertices select v.ToString()).ToArray());
             Console.Write($"Key={key} has vertices={result}");
-
         }
 
     }

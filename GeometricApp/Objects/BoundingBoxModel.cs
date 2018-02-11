@@ -9,7 +9,8 @@ namespace GeometricApp.Objects
 
     /// <summary>
     /// Around each triangle is a bounding box. This model will define the top left vertex of a bounding box
-    /// as well as information on which column (lower left or upper right) for the triangle
+    /// as well as information on which column (lower left or upper right) for the triangle. This is done this way so that
+    /// if any other 'types' of shapes need to be found we can start with the bounding box
     /// </summary>
     public class BoundingBoxModel
     {
